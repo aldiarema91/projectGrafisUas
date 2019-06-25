@@ -316,3 +316,82 @@ kecuali tombol-tombol khusus seperti Spasi, dll */
     break;
     }
 }
+void display(){
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    // Reset the current matrix to the "identity"
+    glLoadIdentity();
+    // Move the "drawing cursor" around
+    gluLookAt(Cx, Cy, Cz,
+    Lx, Ly, Lz,
+    vertikal.x, vertikal.y, vertikal.z);
+    glPushMatrix();
+    glTranslatef(0.0f, 5.0f, -15.0f);
+    glRotatef(silinderAngle2, 0.0f, 0.0f, 1.0f);
+    glRotatef(silinderAngle1, 0.0f, 1.0f, 0.0f);
+    glRotatef(silinderAngle, 1.0f, 0.0f, 0.0f);
+    handphone();
+    glPopMatrix();
+    glPushMatrix();
+    BigBox();
+    glPopMatrix();
+    if (silinder){
+        silinderAngle += 1.0f;
+    }
+    if (silinder1){
+        silinderAngle -= 1.0f;
+    }
+    if (silinder2){
+        silinderAngle1 += 1.0f;
+    }
+    if (silinder3){
+        silinderAngle1 -= 1.0f;
+    }
+    if (silinder4){
+        silinderAngle2 += 15.0f;
+    }
+    if (silinder5){
+        silinderAngle2 -= 15.0f;
+    }
+    if (kamera){
+        keyFunction('K', 0, 0);
+    }
+    if (kamera1){
+        keyFunction('I', 0, 0);
+    }
+    if (kamera2){
+        keyFunction('J', 0, 0);
+    }
+    if (kamera3){
+        keyFunction('L', 0, 0);
+    }
+    if (kamera4){
+        keyFunction('Z', 0, 0);
+    }
+    if (kamera5){
+        keyFunction('X', 0, 0);
+    }
+    glFlush();
+    glutSwapBuffers();
+}
+
+void timer(int value){
+    glutPostRedisplay();
+    glutTimerFunc(15, timer, 0);
+}
+
+int main(int argc, char **argv){
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+    glutInitWindowSize(800, 600);
+    glutInitWindowPosition(50, 50);
+    glutCreateWindow("Pertemuan 7");
+    glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
+    initGL();
+    glutTimerFunc(0, timer, 0);
+    glutSpecialFunc(keyControl);
+    glutKeyboardFunc(keyFunction);
+    glutMainLoop();
+    return EXIT_SUCCESS;
+}
+
