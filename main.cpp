@@ -64,6 +64,53 @@ glTranslated(0.3,0.3,0.3);//cube
 glScaled(4,8,0.7);
 glutSolidCube(1.0);
 glPopMatrix();
+
+glPushMatrix();
+glTranslated(2.0,0.9,0.3);//cube
+glScaled(0.7,0.7,0.7);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslated(2.1,2.5,0.3);//cube
+glScaled(0.5,1.5,0.7);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslated(0.3,0.3,0.3);//cube
+glScaled(4,8,0.7);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+    glTranslated(1.7,-3.6,0.3);//cube
+    float BODY_LENGTH = 0.2f;
+	float BODY_RADIUS = 0.2f;
+	int SLICES = 30;
+	int STACKS = 30;
+	glRotatef(90, 90, 0, 0);
+	GLUquadric *q= gluNewQuadric();
+	gluCylinder(q, BODY_RADIUS, BODY_RADIUS, BODY_LENGTH, SLICES, STACKS);
+	gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
+	glTranslatef(0.0f, 0.0f, BODY_LENGTH);
+	gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
+glPopMatrix();
+
+glPushMatrix();
+    glTranslated(1,-3.6,0.3);//cube
+    float BODY_LENGTH2 = 0.2f;
+	float BODY_RADIUS2 = 0.2f;
+	int SLICES2 = 30;
+	int STACKS2 = 30;
+	glRotatef(90, 90, 0, 0);
+	GLUquadric *s= gluNewQuadric();
+	gluCylinder(s, BODY_RADIUS2, BODY_RADIUS2, BODY_LENGTH2, SLICES2, STACKS2);
+	gluDisk(s, 0.0f, BODY_RADIUS2, SLICES2, STACKS2);
+	glTranslatef(0.0f, 0.0f, BODY_LENGTH2);
+	gluDisk(s, 0.0f, BODY_RADIUS2, SLICES2, STACKS2);
+glPopMatrix();
+    
 }
 
 static void BigBox(){
