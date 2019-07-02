@@ -110,6 +110,61 @@ glPushMatrix();
 	glTranslatef(0.0f, 0.0f, BODY_LENGTH2);
 	gluDisk(s, 0.0f, BODY_RADIUS2, SLICES2, STACKS2);
 glPopMatrix();
+	glPushMatrix();
+    glTranslated(-0.4,-3.7,0.3);//cube
+    float BODY_LENGTH3 = 0.1f;
+	float BODY_RADIUS3 = 0.1f;
+	int SLICES3 = 30;
+	int STACKS3 = 30;
+	glRotatef(90, 90, 0, 0);
+	GLUquadric *r= gluNewQuadric();
+	gluCylinder(r, BODY_RADIUS3, BODY_RADIUS3, BODY_LENGTH3, SLICES3, STACKS3);
+	gluDisk(r, 0.0f, BODY_RADIUS3, SLICES3, STACKS3);
+	glTranslatef(0.0f, 0.0f, BODY_LENGTH3);
+	gluDisk(r, 0.0f, BODY_RADIUS3, SLICES3, STACKS3);
+glPopMatrix();
+
+glPushMatrix();
+    glTranslated(-0.7,-3.7,0.3);//cube
+    float BODY_LENGTH4 = 0.1f;
+	float BODY_RADIUS4 = 0.1f;
+	int SLICES4 = 30;
+	int STACKS4 = 30;
+	glRotatef(90, 90, 0, 0);
+	GLUquadric *t= gluNewQuadric();
+	gluCylinder(t, BODY_RADIUS4, BODY_RADIUS4, BODY_LENGTH4, SLICES4, STACKS4);
+	gluDisk(t, 0.0f, BODY_RADIUS4, SLICES4, STACKS4);
+	glTranslatef(0.0f, 0.0f, BODY_LENGTH4);
+	gluDisk(t, 0.0f, BODY_RADIUS4, SLICES4, STACKS4);
+glPopMatrix();
+
+glPushMatrix();
+    glTranslated(-1.0,-3.7,0.3);//cube
+    float BODY_LENGTH5 = 0.1f;
+	float BODY_RADIUS5 = 0.1f;
+	int SLICES5 = 30;
+	int STACKS5 = 30;
+	glRotatef(90, 90, 0, 0);
+	GLUquadric *u= gluNewQuadric();
+	gluCylinder(u, BODY_RADIUS5, BODY_RADIUS5, BODY_LENGTH5, SLICES5, STACKS5);
+	gluDisk(u, 0.0f, BODY_RADIUS5, SLICES5, STACKS5);
+	glTranslatef(0.0f, 0.0f, BODY_LENGTH5);
+	gluDisk(u, 0.0f, BODY_RADIUS5, SLICES5, STACKS5);
+glPopMatrix();
+
+glPushMatrix();
+    glTranslated(-1.3,-3.7,0.3);//cube
+    float BODY_LENGTH6 = 0.1f;
+	float BODY_RADIUS6 = 0.1f;
+	int SLICES6 = 30;
+	int STACKS6 = 30;
+	glRotatef(90, 90, 0, 0);
+	GLUquadric *v= gluNewQuadric();
+	gluCylinder(v, BODY_RADIUS6, BODY_RADIUS6, BODY_LENGTH6, SLICES6, STACKS6);
+	gluDisk(v, 0.0f, BODY_RADIUS6, SLICES6, STACKS6);
+	glTranslatef(0.0f, 0.0f, BODY_LENGTH6);
+	gluDisk(v, 0.0f, BODY_RADIUS6, SLICES6, STACKS6);
+glPopMatrix();
     
 }
 
