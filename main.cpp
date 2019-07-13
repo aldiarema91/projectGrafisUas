@@ -490,7 +490,7 @@ using namespace std;
         glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
         glutInitWindowSize(700, 560);
         glutInitWindowPosition(50, 50);
-        glutCreateWindow("PLANE PISTON");
+        glutCreateWindow("Demo Display Smartphone");
         glutDisplayFunc(display);
         glutReshapeFunc(reshape);
         glutKeyboardFunc(keyFunction);
