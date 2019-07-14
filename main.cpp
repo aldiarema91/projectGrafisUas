@@ -36,6 +36,8 @@ using namespace std;
     float lateral[] = {-1.0f, 0.0f, 0.0f};
     float vertical[] = {0.0f, 1.0f, 0.0f};
 
+    float col1,col2,col3;
+
     float toRadians(float angle){
         return angle * M_PI / 180;
     }
@@ -70,7 +72,7 @@ using namespace std;
     void initGL(){
         depanBelakang.set_values(0.0f, 0.0f, -1.0f);
         samping.set_values(1.0f, 0.0f, 0.0f);
-        vertikal.set_values(0.0f, 1.0f, 0.0f);
+        vertikal.set_values(0.0f, 0.0f, 0.0f);
         float ambient[] = {1.0f, 1.0f, 1.0f, 1.0f};
         float diffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
         float position[] = {1.0f, 1.0f, 1.0f, 0.0f};
@@ -80,7 +82,7 @@ using namespace std;
         glEnable(GL_LIGHT0);
         glEnable(GL_LIGHTING);
         glEnable(GL_DEPTH_TEST);
-        glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glShadeModel(GL_SMOOTH);
     }
 
@@ -130,11 +132,33 @@ using namespace std;
         glTranslatef(0.0f, 0.0f, BODY_LENGTH);
         gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
     }
+    void layar(float col1, float col2, float col3){
+
+        float amb[] = {col1, col1, col1, 0.5f };
+        float diff[] = {col2, col2, col2, 0.5f };
+        float spec[] = {col3, col3, col3, 0.5f };
+        float shine = 1.0f;
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+
+        glPushMatrix();
+        glTranslated(0.0,0.0,0.0);
+        glScaled(4,8,0.1);
+        glutSolidCube(1.0);
+        glPopMatrix();
+    }
     void rangkahp(){
-        float amb[] = {0.294f, 0.294f, 0.294f, 1.0f };
-        float diff[] = {0.46f, 0.46f, 0.46f, 0.55f };
-        float spec[] = {0.662f, 0.662f, 0.46f, 0.55f };
-        float shine = 200.0f;
+        glPushMatrix();
+        glTranslated(0.0,0.0,0.4);
+        layar(0.1f,0.0f,0.0f);
+        glPopMatrix();
+
+        float amb[] = {0.1f, 0.1f, 0.1f, 0.5f };
+        float diff[] = {0.2f, 0.2f, 0.2f, 0.5f };
+        float spec[] = {0.3f, 0.3f, 0.3f, 0.5f };
+        float shine = 0.5f;
         glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
         glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
         glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
@@ -194,6 +218,7 @@ using namespace std;
 
 
     }
+
     void handphone() {
 
         glPushMatrix();
@@ -444,6 +469,10 @@ using namespace std;
             case 74: // Rotasi sumbu X- dengan tombol J
                     R_X = R_X - 15.0f;
                 break;
+            case 13: // hidupkan layar
+                    R_X = R_X - 15.0f;
+                break;
+
 
 
 
