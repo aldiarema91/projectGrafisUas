@@ -256,7 +256,7 @@ using namespace std;
         glPopMatrix();
 
         glPushMatrix();
-            glTranslated(1.7,-3.9,0.3);//cube
+            glTranslated(1.7,-3.82,0.3);//cube
             float BODY_LENGTH = 0.2f;
             float BODY_RADIUS = 0.2f;
             int SLICES = 30;
@@ -270,9 +270,9 @@ using namespace std;
         glPopMatrix();
 
         glPushMatrix();
-            glTranslated(1,-3.9,0.3);//cube
+            glTranslated(1,-3.82,0.3);//cube
             float BODY_LENGTH2 = 0.2f;
-            float BODY_RADIUS2 = 0.2f;
+            float BODY_RADIUS2 = 0.1f;
             int SLICES2 = 30;
             int STACKS2 = 30;
             glRotatef(90, 90, 0, 0);
@@ -282,8 +282,9 @@ using namespace std;
             glTranslatef(0.0f, 0.0f, BODY_LENGTH2);
             gluDisk(s, 0.0f, BODY_RADIUS2, SLICES2, STACKS2);
         glPopMatrix();
+        
             glPushMatrix();
-            glTranslated(-0.4,-4.0,0.3);//cube
+            glTranslated(-0.4,-3.92,0.3);//cube
             float BODY_LENGTH3 = 0.1f;
             float BODY_RADIUS3 = 0.1f;
             int SLICES3 = 30;
@@ -297,7 +298,7 @@ using namespace std;
         glPopMatrix();
 
         glPushMatrix();
-            glTranslated(-0.7,-4.0,0.3);//cube
+            glTranslated(-0.7,-3.92,0.3);//cube
             float BODY_LENGTH4 = 0.1f;
             float BODY_RADIUS4 = 0.1f;
             int SLICES4 = 30;
@@ -311,7 +312,7 @@ using namespace std;
         glPopMatrix();
 
         glPushMatrix();
-            glTranslated(-1.0,-4.0,0.3);//cube
+            glTranslated(-1.0,-3.92,0.3);//cube
             float BODY_LENGTH5 = 0.1f;
             float BODY_RADIUS5 = 0.1f;
             int SLICES5 = 30;
@@ -325,7 +326,7 @@ using namespace std;
         glPopMatrix();
 
         glPushMatrix();
-            glTranslated(-1.3,-4.0,0.3);//cube
+            glTranslated(-1.3,-3.92,0.3);//cube
             float BODY_LENGTH6 = 0.1f;
             float BODY_RADIUS6 = 0.1f;
             int SLICES6 = 30;
@@ -336,6 +337,50 @@ using namespace std;
             gluDisk(v, 0.0f, BODY_RADIUS6, SLICES6, STACKS6);
             glTranslatef(0.0f, 0.0f, BODY_LENGTH6);
             gluDisk(v, 0.0f, BODY_RADIUS6, SLICES6, STACKS6);
+        glPopMatrix();
+        
+        //kamera
+            glPushMatrix();
+            glTranslated(0.3,3.0,-0.15);//cube
+            float BODY_LENGTH7 = 0.4f;
+            float BODY_RADIUS7 = 0.4f;
+            int SLICES7 = 30;
+            int STACKS7 = 30;
+            glRotatef(0, 20, 30, 30);
+            GLUquadric *y= gluNewQuadric();
+            gluCylinder(y, BODY_RADIUS7, BODY_RADIUS7, BODY_LENGTH7, SLICES7, STACKS7);
+            gluDisk(y, 0.0f, BODY_RADIUS7, SLICES7, STACKS7);
+            glTranslatef(0.0f, 0.0f, BODY_LENGTH7);
+            gluDisk(y, 0.0f, BODY_RADIUS7, SLICES7, STACKS7);
+        glPopMatrix();
+
+        //fingerprint
+        glPushMatrix();
+            glTranslated(0.3,1.5,-0.15);//cube
+            float BODY_LENGTH8 = 0.4f;
+            float BODY_RADIUS8 = 0.4f;
+            int SLICES8 = 30;
+            int STACKS8 = 30;
+            glRotatef(0, 60, 60, 60);
+            GLUquadric *z= gluNewQuadric();
+            gluCylinder(z, BODY_RADIUS8, BODY_RADIUS8, BODY_LENGTH8, SLICES8, STACKS8);
+            gluDisk(z, 0.0f, BODY_RADIUS8, SLICES8, STACKS8);
+            glTranslatef(0.0f, 0.0f, BODY_LENGTH8);
+            gluDisk(z, 0.0f, BODY_RADIUS8, SLICES8, STACKS8);
+        glPopMatrix();
+
+        glPushMatrix();
+            glTranslated(0.3,3.0,-0.2);//cube
+            float BODY_LENGTH9 = 0.12f;
+            float BODY_RADIUS9 = 0.15f;
+            int SLICES9 = 30;
+            int STACKS9 = 30;
+            glRotatef(0, 60, 60, 60);
+            GLUquadric *a= gluNewQuadric();
+            gluCylinder(a, BODY_RADIUS9, BODY_RADIUS9, BODY_LENGTH9, SLICES9, STACKS9);
+            gluDisk(a, 0.0f, BODY_RADIUS9, SLICES9, STACKS9);
+            glTranslatef(0.0f, 0.0f, BODY_LENGTH9);
+            gluDisk(a, 0.0f, BODY_RADIUS9, SLICES9, STACKS9);
         glPopMatrix();
 
     }
