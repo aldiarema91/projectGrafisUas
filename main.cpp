@@ -487,6 +487,14 @@ void slotsim(){
             gluDisk(z, 0.0f, BODY_RADIUS8, SLICES8, STACKS8);
         glPopMatrix();
 
+        float amb2[] = {0.0f, 0.0f, 0.0f, 0.5f };
+        float diff2[] = {0.0f, 0.0f, 0.0f, 0.5f };
+        float spec2[] = {0.0f, 0.0f, 0.0f, 0.5f };
+        float shine2 = 0.5f;
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb2);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff2);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec2);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine2);
         glPushMatrix();
             glTranslated(0.3,3.0,-0.2);//cube
             float BODY_LENGTH9 = 0.12f;
