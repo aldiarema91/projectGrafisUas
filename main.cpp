@@ -132,6 +132,71 @@ using namespace std;
         glTranslatef(0.0f, 0.0f, BODY_LENGTH);
         gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
     }
+void slotsim(){
+        float amb[] = {0.0f, 0.0f, 1.0f, 1.0f };
+        float diff[] = {0.0f, 1.0f, 1.0f, 0.5f };
+        float spec[] = {1.0f, 0.0f, 1.0f, 0.5f };
+        float shine = 0.0f;
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+
+        glPushMatrix();
+        glTranslated(-5,4.9,0);
+        glScaled(0.1,1.8,0.1);
+        glutSolidCube(1.0);
+        glPopMatrix();
+
+        glPushMatrix();
+        glTranslated(-3.9,5.5,0);
+        glScaled(2.1,0.1,0.1);
+        glutSolidCube(1.0);
+        glPopMatrix();
+
+        glPushMatrix();
+        glTranslated(-2.8,5.1,0);
+        glScaled(0.1,0.9,0.1);
+        glutSolidCube(1.0);
+        glPopMatrix();
+
+        glPushMatrix();
+
+        glTranslated(-3,4.5,0);
+        glRotatef(-45, 0, 0, 5);
+        glScaled(0.1,0.6,0.1);
+        glutSolidCube(1.0);
+        glPopMatrix();
+
+        glPushMatrix();
+        glTranslated(-4.1,4.3,0);
+        glScaled(1.8,0.1,0.1);
+        glutSolidCube(1.0);
+        glPopMatrix();
+
+        glPushMatrix();
+        glTranslated(-4,4.9,0);
+        glScaled(0.1,1.2,0.1);
+        glutSolidCube(1.0);
+        glPopMatrix();
+
+
+        float amb1[] = {0.0f, 0.0f, 0.0f, 0.5f };
+        float diff1[] = {0.0f, 0.0f, 0.0f, 0.5f };
+        float spec1[] = {0.0f, 0.0f, 0.0f, 0.5f };
+        float shine1 = 1.0f;
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb1);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff1);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec1);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine1);
+        glPushMatrix();
+        glTranslated(-5.1,4.9,0);
+        glScaled(0.1,2,0.2);
+        glutSolidCube(1.0);
+        glPopMatrix();
+
+    }
     void layar(float col1, float col2, float col3){
 
         float amb[] = {col1, col1, col1, 0.5f };
@@ -148,6 +213,52 @@ using namespace std;
         glScaled(4,8,0.1);
         glutSolidCube(1.0);
         glPopMatrix();
+    }
+ void kamera(){
+        glPushMatrix();
+        glTranslated(1.2,5,0);
+        glScaled(0.7,1.4,0.2);
+        glutSolidCube(1.0);
+        glPopMatrix();
+
+        glPushMatrix();
+            glTranslated(1.2,5.3,0.1);
+            float BODY_LENGTH9 = 0.1f;
+            float BODY_RADIUS9 = 0.3f;
+            int SLICES9 = 30;
+            int STACKS9 = 30;
+            glRotatef(0, 60, 60, 60);
+            GLUquadric *a= gluNewQuadric();
+            gluCylinder(a, BODY_RADIUS9, BODY_RADIUS9, BODY_LENGTH9, SLICES9, STACKS9);
+            gluDisk(a, 0.0f, BODY_RADIUS9, SLICES9, STACKS9);
+            glTranslatef(0.0f, 0.0f, BODY_LENGTH9);
+            gluDisk(a, 0.0f, BODY_RADIUS9, SLICES9, STACKS9);
+        glPopMatrix();
+
+
+        float amb[] = {0.0f, 0.0f, 0.0f, 0.5f };
+        float diff[] = {0.0f, 0.0f, 0.0f, 0.5f };
+        float spec[] = {0.0f, 0.0f, 0.0f, 0.5f };
+        float shine = 1.0f;
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+        glPushMatrix();
+            glTranslated(1.2,5.3,0.1);
+            float BODY_LENGTHX = 0.12f;
+            float BODY_RADIUSX = 0.15f;
+            int SLICESX = 30;
+            int STACKSX = 30;
+            glRotatef(0, 60, 60, 60);
+            GLUquadric *X= gluNewQuadric();
+            gluCylinder(X, BODY_RADIUSX, BODY_RADIUSX, BODY_LENGTHX, SLICESX, STACKSX);
+            gluDisk(X, 0.0f, BODY_RADIUSX, SLICESX, STACKSX);
+            glTranslatef(0.0f, 0.0f, BODY_LENGTHX);
+            gluDisk(X, 0.0f, BODY_RADIUSX, SLICESX, STACKSX);
+        glPopMatrix();
+
+
     }
     void rangkahp(){
         glPushMatrix();
@@ -281,6 +392,13 @@ using namespace std;
             gluDisk(s, 0.0f, BODY_RADIUS2, SLICES2, STACKS2);
             glTranslatef(0.0f, 0.0f, BODY_LENGTH2);
             gluDisk(s, 0.0f, BODY_RADIUS2, SLICES2, STACKS2);
+        glPopMatrix();
+        
+        //USB
+        glPushMatrix();
+        glTranslated(0.3,-3.67,0.3);
+        glScaled(0.7,0.7,0.2);
+        glutSolidCube(1.0);
         glPopMatrix();
         
             glPushMatrix();
