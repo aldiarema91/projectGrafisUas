@@ -87,30 +87,6 @@ using namespace std;
         glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
         glShadeModel(GL_SMOOTH);
     }
-
-    void Piston(){
-        float amb[] = {0.294f, 0.294f, 0.7f, 1.0f };
-        float diff[] = {0.46f, 0.46f, 0.8f, 0.55f };
-        float spec[] = {0.662f, 0.662f, 0.9f, 0.55f };
-        float shine = 200.0f;
-        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
-        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
-        float BODY_RADIUS3=0.5f;
-        float BODY_RADIUS4=1.0f;
-        int SLICES=72;
-        int STACKS=72;
-            GLUquadric *q = gluNewQuadric();
-            glPushMatrix();
-            glTranslatef(0.0f, 0.0f, 1.125f);
-            glPopMatrix();
-            gluDisk(q, BODY_RADIUS3, BODY_RADIUS4, SLICES, STACKS);
-            gluCylinder(q, BODY_RADIUS4, BODY_RADIUS4, 1.0f, SLICES, STACKS);
-            gluCylinder(q, BODY_RADIUS3, BODY_RADIUS3, 1.0f, SLICES, STACKS);
-            glTranslatef(0.0f, 0.0f, 1.0f);
-            gluDisk(q, BODY_RADIUS3, BODY_RADIUS4, SLICES, STACKS);
-    }
     void tabung(float r, float t) {
         float BODY_LENGTH = t;
         float BODY_RADIUS = r;
@@ -121,6 +97,28 @@ using namespace std;
         gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
         glTranslatef(0.0f, 0.0f, BODY_LENGTH);
         gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
+
+    }
+    void wiCas(float r, float t) {
+        float amb[] = {0.0f, 0.0f, 1.0f, 1.0f };
+        float diff[] = {0.0f, 1.0f, 1.0f, 0.5f };
+        float spec[] = {1.0f, 0.0f, 1.0f, 0.5f };
+        float shine = 0.0f;
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+        float BODY_LENGTH = t;
+        float BODY_RADIUS = r;
+        int SLICES = 72;
+        int STACKS = 72;
+        GLUquadric *q = gluNewQuadric();
+        gluCylinder(q, BODY_RADIUS, BODY_RADIUS, BODY_LENGTH, SLICES, STACKS);
+        gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
+        glTranslatef(0.0f, 0.0f, BODY_LENGTH);
+        gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
+
     }
     void sudut() {
         float BODY_LENGTH = 0.7f;
@@ -339,6 +337,11 @@ void slotsim(){
         rangkahp();
         glPopMatrix();
 
+        glPushMatrix();
+        glTranslated(3.13,-3.1,0.3);
+        slotsim();
+        glPopMatrix();
+
 
 
         glPushMatrix();
@@ -524,6 +527,8 @@ void slotsim(){
     float bodyHp = 0;
     float slots = -1.0;
     float popcam = -1.0;
+    boolean wicarg = false;
+    float wcas = -10.0;
     float arah1 = 0.01;
     float arah2 = 0.01;
     boolean hidupkan = false;
@@ -569,6 +574,7 @@ void slotsim(){
 
     void display()
     {
+
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(0.8, 0.8, 0.7, 1.0);
         glLoadIdentity();
@@ -609,7 +615,20 @@ void slotsim(){
         layar(col1,col2,col3);
         glPopMatrix();
 
+        glPushMatrix();
+        glTranslated(wcas,0.3,-1.05);
+        glRotatef(-90, 0.0f, -1.0f, 0.0f);
+        wiCas(3.0,1.0);
+        glPopMatrix();
+
         /**batas batas **/
+        if(wicarg == true){
+            wcas = wcas + 0.5;
+        }else{
+            wcas = wcas - 0.5;
+        }
+
+
         if(scon == false){
             slots = slots + 0.05;
         }else{
@@ -625,10 +644,19 @@ void slotsim(){
         if(slots > -1.0){
             slots = -1.0;
             hidupkan = false;
+            if(wcas > -1.0){
+                wcas = -1.0;
+                hidupkan = true;
+            }
         }else if(slots < -3.8){
             slots = -3.8;
+            if(wcas > -1.0){
+                wcas = -1.0;
+                hidupkan = true;
+            }
             //hidupkan = true;
         }
+
 
         if(popcam < -1.0){
             popcam = -1.0;
@@ -778,7 +806,12 @@ void slotsim(){
             case 27: // TRUNOFF ESC
                     hidupkan = false;
                 break;
-
+            case 84: // wireless cas T
+                    wicarg = true;
+                break;
+            case 89: // wireless cas OFF y
+                    wicarg = false;
+                break;
             }
         }
 
