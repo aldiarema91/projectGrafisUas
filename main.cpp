@@ -36,7 +36,9 @@ using namespace std;
     float lateral[] = {-1.0f, 0.0f, 0.0f};
     float vertical[] = {0.0f, 1.0f, 0.0f};
 
-    float col1,col2,col3;
+    float col1=0.0;
+    float col2=0.0;
+    float col3=0.0;
 
     float toRadians(float angle){
         return angle * M_PI / 180;
@@ -82,7 +84,7 @@ using namespace std;
         glEnable(GL_LIGHT0);
         glEnable(GL_LIGHTING);
         glEnable(GL_DEPTH_TEST);
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
         glShadeModel(GL_SMOOTH);
     }
 
@@ -199,9 +201,9 @@ void slotsim(){
     }
     void layar(float col1, float col2, float col3){
 
-        float amb[] = {col1, col1, col1, 0.5f };
-        float diff[] = {col2, col2, col2, 0.5f };
-        float spec[] = {col3, col3, col3, 0.5f };
+        float amb[] = {col1 - 0.2f, col2 - 0.2f, col3 - 0.2f, 0.5f };
+        float diff[] = {col1 - 0.1f, col2 - 0.1f, col3 - 0.1f, 0.5f };
+        float spec[] = {col1, col2, col3, 0.5f };
         float shine = 1.0f;
         glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
         glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
@@ -210,17 +212,26 @@ void slotsim(){
 
         glPushMatrix();
         glTranslated(0.0,0.0,0.0);
-        glScaled(4,8,0.1);
+        glScaled(4.3,8.2,0.1);
         glutSolidCube(1.0);
         glPopMatrix();
     }
  void kamera(){
+
         glPushMatrix();
         glTranslated(1.2,5,0);
         glScaled(0.7,1.4,0.2);
         glutSolidCube(1.0);
         glPopMatrix();
-
+        float amb[] = {0.0f, 0.0f, 1.0f, 1.0f };
+        float diff[] = {0.0f, 1.0f, 1.0f, 0.5f };
+        float spec[] = {1.0f, 0.0f, 1.0f, 0.5f };
+        float shine = 0.0f;
+        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
+        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
         glPushMatrix();
             glTranslated(1.2,5.3,0.1);
             float BODY_LENGTH9 = 0.1f;
@@ -235,15 +246,6 @@ void slotsim(){
             gluDisk(a, 0.0f, BODY_RADIUS9, SLICES9, STACKS9);
         glPopMatrix();
 
-
-        float amb[] = {0.0f, 0.0f, 0.0f, 0.5f };
-        float diff[] = {0.0f, 0.0f, 0.0f, 0.5f };
-        float spec[] = {0.0f, 0.0f, 0.0f, 0.5f };
-        float shine = 1.0f;
-        glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, amb);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diff);
-        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
-        glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shine);
         glPushMatrix();
             glTranslated(1.2,5.3,0.1);
             float BODY_LENGTHX = 0.12f;
@@ -263,7 +265,7 @@ void slotsim(){
     void rangkahp(){
         glPushMatrix();
         glTranslated(0.0,0.0,0.4);
-        layar(0.1f,0.0f,0.0f);
+        //layar(0.1f,0.0f,0.0f);
         glPopMatrix();
 
         float amb[] = {0.1f, 0.1f, 0.1f, 0.5f };
@@ -333,8 +335,16 @@ void slotsim(){
     void handphone() {
 
         glPushMatrix();
-        glTranslated(0.3,0.3,0.3);//cube
+        glTranslated(0.3,0.3,0.3);
         rangkahp();
+        glPopMatrix();
+
+
+
+        glPushMatrix();
+        glTranslated(-2.05,0.6,0.3);
+        glRotatef(90, 0, 1, 0);
+        tabung(0.1,0.1);
         glPopMatrix();
 
         float amb[] = {0.0f, 0.0f, 1.0f, 1.0f };
@@ -393,14 +403,14 @@ void slotsim(){
             glTranslatef(0.0f, 0.0f, BODY_LENGTH2);
             gluDisk(s, 0.0f, BODY_RADIUS2, SLICES2, STACKS2);
         glPopMatrix();
-        
+
         //USB
         glPushMatrix();
         glTranslated(0.3,-3.67,0.3);
         glScaled(0.7,0.7,0.2);
         glutSolidCube(1.0);
         glPopMatrix();
-        
+
             glPushMatrix();
             glTranslated(-0.4,-3.92,0.3);//cube
             float BODY_LENGTH3 = 0.1f;
@@ -456,7 +466,7 @@ void slotsim(){
             glTranslatef(0.0f, 0.0f, BODY_LENGTH6);
             gluDisk(v, 0.0f, BODY_RADIUS6, SLICES6, STACKS6);
         glPopMatrix();
-        
+
         //kamera
             glPushMatrix();
             glTranslated(0.3,3.0,-0.15);//cube
@@ -512,11 +522,12 @@ void slotsim(){
     }
 
     float bodyHp = 0;
-    float connectroad1 = 2.0;
-    float connectroad2 = -2.0;
+    float slots = -1.0;
+    float popcam = -1.0;
     float arah1 = 0.01;
     float arah2 = 0.01;
-    boolean jalan1;
+    boolean hidupkan;
+    boolean pcon = false;
     float putar1 = 0.2;
     float putar2 = 0.2;
     float putar3 = 0.2;
@@ -558,7 +569,7 @@ void slotsim(){
     void display()
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glClearColor(0.5, 0.5, 0.5, 1.0);
+        glClearColor(0.8, 0.8, 0.7, 1.0);
         glLoadIdentity();
 
             gluLookAt(Cx, Cy, Cz,
@@ -579,7 +590,57 @@ void slotsim(){
         handphone();
         glPopMatrix();
 
+        glPushMatrix();
+        glTranslated(0.3,popcam,-1.2);
+        glRotatef(-90, 0.0f, -1.0f, 0.0f);
+        kamera();
+        glPopMatrix();
 
+        glPushMatrix();
+        glTranslated(0.3f,-3.1f,slots);
+        glRotatef(-90, 0.0f, -1.0f, 0.0f);
+        slotsim();
+        glPopMatrix();
+
+        glPushMatrix();
+        glTranslated(0.65,0.3,-1.05);
+        glRotatef(-90, 0.0f, -1.0f, 0.0f);
+        layar(col1,col2,col3);
+        glPopMatrix();
+
+        /**batas batas **/
+        if(slots > -1.0){
+            slots = -1.0;
+            hidupkan = false;
+        }else if(slots < -3.8){
+            slots = -3.8;
+            hidupkan = true;
+        }
+
+        if(pcon == true){
+            popcam = popcam + 0.05;
+        }else{
+            popcam = popcam - 0.05;
+        }
+
+        if(popcam < -1.0){
+            popcam = -1.0;
+        }else if(popcam > 0.0){
+            popcam = 0.0;
+        }
+
+        boolean cekLayar;
+        if(hidupkan == true){
+            col1 = col1 + 0.02;
+            col2 = col2 + 0.03;
+            col3 = col3 + 0.04;
+        }else{
+            col1 = col1 - 0.05;
+            col2 = col2 - 0.05;
+            col3 = col3 - 0.05;
+
+            pcon = false;
+        }
 
 
         glFlush();
@@ -680,6 +741,26 @@ void slotsim(){
             case 88: // zoom out dengan tombol X
                     T_Z = T_Z - 0.5f;
                 break;
+            case 86: // pop slot sim dengan tombol V
+                    slots = slots + 0.2f;
+                break;
+            case 66: // back slot sim dengan tombol B
+                    slots = slots - 0.2f;
+                break;
+            case 77: // pop CAMERA dengan tombol M
+                    //popcam = popcam + 0.2f;
+                    pcon = true;
+                break;
+            case 78: // back CAMERA dengan tombol N
+                    //popcam = popcam - 0.2f;
+                    pcon = false;
+                break;
+            case 27: // TRUNOFF ESC
+                    col1=0.0;
+                    col2=0.0;
+                    col3=0.0;
+                break;
+
             }
         }
 
