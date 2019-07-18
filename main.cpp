@@ -526,8 +526,9 @@ void slotsim(){
     float popcam = -1.0;
     float arah1 = 0.01;
     float arah2 = 0.01;
-    boolean hidupkan;
+    boolean hidupkan = false;
     boolean pcon = false;
+    boolean scon = false;
     float putar1 = 0.2;
     float putar2 = 0.2;
     float putar3 = 0.2;
@@ -609,12 +610,10 @@ void slotsim(){
         glPopMatrix();
 
         /**batas batas **/
-        if(slots > -1.0){
-            slots = -1.0;
-            hidupkan = false;
-        }else if(slots < -3.8){
-            slots = -3.8;
-            hidupkan = true;
+        if(scon == false){
+            slots = slots + 0.05;
+        }else{
+            slots = slots - 0.05;
         }
 
         if(pcon == true){
@@ -623,22 +622,40 @@ void slotsim(){
             popcam = popcam - 0.05;
         }
 
+        if(slots > -1.0){
+            slots = -1.0;
+            hidupkan = false;
+        }else if(slots < -3.8){
+            slots = -3.8;
+            //hidupkan = true;
+        }
+
         if(popcam < -1.0){
             popcam = -1.0;
         }else if(popcam > 0.0){
             popcam = 0.0;
         }
 
-        boolean cekLayar;
         if(hidupkan == true){
-            col1 = col1 + 0.02;
-            col2 = col2 + 0.03;
-            col3 = col3 + 0.04;
+            col1 = col1 + 0.002;
+            col2 = col2 + 0.003;
+            col3 = col3 + 0.004;
         }else{
-            col1 = col1 - 0.05;
-            col2 = col2 - 0.05;
-            col3 = col3 - 0.05;
+            col1 = col1 - 0.007;
+            col2 = col2 - 0.008;
+            col3 = col3 - 0.009;
 
+            pcon = false;
+        }
+        if(col1 > 1.0){
+            col1 = 1.0;
+            col2 = 1.0;
+            col3 = 1.0;
+
+        }else if(col3 < 0.0){
+            col1 = 0.0;
+            col2 = 0.0;
+            col3 = 0.0;
             pcon = false;
         }
 
@@ -742,23 +759,24 @@ void slotsim(){
                     T_Z = T_Z - 0.5f;
                 break;
             case 86: // pop slot sim dengan tombol V
-                    slots = slots + 0.2f;
+                    //slots = slots + 0.2f;
+                    scon = true;
                 break;
             case 66: // back slot sim dengan tombol B
-                    slots = slots - 0.2f;
+                    //slots = slots - 0.2f;
+                    scon = false;
                 break;
             case 77: // pop CAMERA dengan tombol M
-                    //popcam = popcam + 0.2f;
                     pcon = true;
                 break;
             case 78: // back CAMERA dengan tombol N
-                    //popcam = popcam - 0.2f;
                     pcon = false;
                 break;
+            case 127: // turn on phone SPACE
+                    hidupkan = true;
+                break;
             case 27: // TRUNOFF ESC
-                    col1=0.0;
-                    col2=0.0;
-                    col3=0.0;
+                    hidupkan = false;
                 break;
 
             }
